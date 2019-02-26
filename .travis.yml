@@ -1,44 +1,38 @@
 dist: xenial
 language: python
 cache: pip
-
 python:
-  - '3.5'
-  - '3.5-dev'
-  - '3.6'
-  - '3.6-dev'
-  - '3.7'
-  - '3.7-dev'
-
+- '3.5'
+- 3.5-dev
+- '3.6'
+- 3.6-dev
+- '3.7'
+- 3.7-dev
 install:
-  - pip install pipenv
-  - pipenv --python ${TRAVIS_PYTHON_VERSION}
-  - pipenv sync --dev
-
+- pip install pipenv
+- pipenv --python ${TRAVIS_PYTHON_VERSION}
+- pipenv sync --dev
 before_script:
-  - flake8 google_oauth2_tool
-
+- flake8 google_oauth2_tool
 script:
-  - pytest -vv -x tests
-
+- pytest -vv -x tests
 stages:
-  - test
-  - deploy
-
+- test
+- deploy
 jobs:
   include:
-    - stage: deploy
-      python: '3.6'
-      install: skip
-      before_script: skip
-      script: skip
-      deploy:
-        provider: pypi
-        user: dlancer
-        password:
-          secure: "WM25jC1uKnNHordN3jUJe8MY+sR0GDnfFoQPYnvAbRuSMzhYGrjw9Q1bynibkBSvNmZyCb+njYSzAqowP4L/QGNlD4PP7vfIfN4ANbLeoY4pYNGIt+5QS0Q0aE1wDRrjkqtNSg72DTN0GJ6S6LDZQ52P0SMeoDI1yOtD99+CmTrKW/CQadSEC658Vu6YehOZ5YO5py74109jdIhPuvfVI/jlKSsgLqVKHLEoSNeAwfhoMOPn2qnVaVIiDuZPX5foPI1Y9Db8gAlpkhmC9o5ymaDI8qBFoixFsvGcT6KbG8h62Lb1Lv6GNplIYmamPYTkzHJ0h1cLgX4CLSQGIcv0B4ZaR2TDmUoaPQHvYKN7MKiNNZ3E9tJ1IkOT31tCo1fkkLSl1UXkJKDN+Wu0Sy+tRJ5gGAorIxRKvgOc1iUxCNuo+1Ef0fjt5iXaxM737kj/SP7ihBQcWazfhbYTUlCB0qZFHmsrx0jXP8odFYNcv7F5znk6CaRyXtjojRXOK8Z4oBz5J1uieF6pDg6nxYtMcsb4R15K3KkAE35CRfsmdYIW4af9WfNhnn2CLq7gWVpqSCrDrpC1/VyDZaAE/V8lDPk82dlg7ff24UT5LTGdcv5tNYsKlQUNpzmL2vZFqPGXYKAH4XSCjNzY+2he+oAk/9A7Pzdj7ZhN80AEoHGk9Tk="
-        on:
-          tags:   true
-          branch: master
-          condition: $TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+
-        distributions: sdist bdist_wheel
+  - stage: deploy
+    python: '3.6'
+    install: skip
+    before_script: skip
+    script: skip
+    deploy:
+      provider: pypi
+      user: dlancer
+      password:
+        secure: "U+e00xd1IAtZCiepEnuLvpVP9UsIRz7Bl3bqyqSt+LbhKrW6g4bAjmbznn2f+Ep/e8+oUGYoSXArqNJ1gc08ssGx9JadGMpI3j5vmQdZkZqehOeICRLDBvKC57t9qBBnNWsdBi3DbR783mLnrxZUzrd+VrH2Gng3e2ChZIHpdVaoVMjw3Gqnu+XvNlo1QEVWdV/bZ/xgUaeiJc7cUaPopgDvKAQPWjHtsw1UjjYBSVsV4c2vggpPH2S1eimoTYinQeRg5+3dK//PSFbpO0S3uYSiW4+4ptVBZXwsGwqDBQQ14+6hJHseIXKS2VMUyA8eaSgSgn+S7mtusKhA3jM78f+AFwBLIS3tkoXOqCG8K5QmA4iZo4P7OaJJtDyi2lbEM3sofhn/duhrkX79Gnz7ty+aI6MlR0RSJsnAjY8hwr/pjtPkuNyiwGm4jfvrWgxW3ZmO5Cyyu/IroGduMv7PVmuNRsYlhcc58KNDWrxYbrevXPjEksK/8O6eSNDfEkisf8FT6+NSroeRJIitPrMGaABPo1WpLA6M1Kz/N2lnOQXz6dy9TVlz2msu581TlBOMLJfVJGbFzMQxymyCTFhAtaHoO34VGjvy1R4y18374zM5sAInKZg9JzbybhDsM7DNTjL4FtwJxFpI8aYktJu+G5MaXGwfJ8t3F6wU/AcPbes="
+      on:
+        tags: true
+        branch: master
+        condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+"
+      distributions: sdist bdist_wheel
