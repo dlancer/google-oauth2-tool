@@ -1,0 +1,14 @@
+*~
+*.pyc
+*.pyo
+.idea
+.DS_Store
+.python-version
+*.egg-info
+.env
+.eggs/*
+.data/*
+.key/*
+__pycache__/*
+build/*
+dist/*
