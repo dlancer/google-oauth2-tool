@@ -34,7 +34,7 @@ setup(
     maintainer='dlancer',
     maintainer_email='dmdpost@gmail.com',
     zip_safe=False,
-    python_requires='>=3.6',
+    python_requires='>=3.5',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
