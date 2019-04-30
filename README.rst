@@ -50,4 +50,4 @@ From command line::
 
     $ oauth2_tool --help
 
-    $ oauth2_tool --source=client_id.json --scope=scopes.txt --destination=oath2_key.json
+    $ oauth2_tool --source=client_id.json --scope=scopes.txt --destination=oauth2_key.json [--strip=true]
